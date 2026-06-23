@@ -30,13 +30,17 @@ function App() {
         response.data.weather[0].icon +
         "@2x.png";
 
-      const day = new Date().toLocaleDateString("en-US", {
+      const timestamp = new Date(response.data.dt * 1000);
+      const day = timestamp.toLocaleDateString("en-GB", {
         weekday: "long",
+        timeZone: "UTC",
       });
-
-      const time = new Date().toLocaleTimeString("en-US", {
+      const time = timestamp.toLocaleTimeString("en-GB", {
         hour: "2-digit",
         minute: "2-digit",
+        hour12: false,
+        hourCycle: "h23",
+        timeZone: "UTC",
       });
 
       setWeather({

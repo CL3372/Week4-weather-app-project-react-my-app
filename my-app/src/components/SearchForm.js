@@ -13,14 +13,21 @@ function SearchForm({ onSearch, isLoading }) {
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <input
+        className="search-form-input"
         type="text"
         value={city}
         onChange={(event) => setCity(event.target.value)}
         placeholder="Enter a city..."
         aria-label="City"
       />
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? "Searching..." : "Search"}
+      <button
+        type="submit"
+        className="search-form-button rainbow-button"
+        disabled={isLoading}
+      >
+        <span className="button-label">
+          {isLoading ? "Searching..." : "Search"}
+        </span>
       </button>
     </form>
   );
