@@ -13,7 +13,7 @@ export default function WeatherFooter() {
       </a>{" "}
       Code hosted on{" "}
       <a
-        href="https://github.com/CL3372/My-Vanilla-weather-project"
+        href="https://github.com/CL3372/Week4-weather-app-project-react-my-app"
         target="_blank"
         rel="noreferrer"
       >
@@ -21,7 +21,7 @@ export default function WeatherFooter() {
       </a>{" "}
       project hosted on{" "}
       <a
-        href="https://my-vanilla-weather-project.vercel.app/"
+        href="https://my-app-bice-tau-35.vercel.app"
         target="_blank"
         rel="noreferrer"
       >
