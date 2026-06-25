@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function WeatherForecast({ city }) {
   const [forecast, setForecast] = useState(null);
+  const [timezoneOffset, setTimezoneOffset] = useState(0);
 
   useEffect(() => {
     if (!city) return;
@@ -15,17 +16,17 @@ export default function WeatherForecast({ city }) {
 
   function handleResponse(response) {
     setForecast(response.data.list);
+    setTimezoneOffset(response.data.city.timezone);
   }
 
   function toFahrenheit(celsius) {
     return Math.round((celsius * 9) / 5 + 32);
   }
 
-
-  function formatDay(timestamp) {
-    let date = new Date(timestamp * 1000);
+  function formatDay(timestamp, timezoneOffsetSeconds) {
+    let date = new Date((timestamp + timezoneOffsetSeconds) * 1000);
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    return days[date.getDay()];
+    return days[date.getUTCDay()];
   }
 
   if (!forecast) {
@@ -42,7 +43,7 @@ export default function WeatherForecast({ city }) {
             return (
               <div className="col" key={index}>
                 <div className="weather-forecast-date">
-                  {formatDay(forecastDay.dt)}
+                  {formatDay(forecastDay.dt, timezoneOffset)}
                 </div>
                 <img
                   src={`https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png`}
@@ -54,7 +55,6 @@ export default function WeatherForecast({ city }) {
                     {Math.round(forecastDay.main.temp_max)}°C |{" "}
                     {toFahrenheit(forecastDay.main.temp_max)}°F
                   </span>
-                 
                 </div>
               </div>
             );
@@ -63,4 +63,3 @@ export default function WeatherForecast({ city }) {
     </div>
   );
 }
-

@@ -8,6 +8,24 @@ import WeatherFooter from "./components/WeatherFooter";
 import axios from "axios";
 import "./App.css";
 
+function formatCityLocalDateTime(unixSeconds, timezoneOffsetSeconds) {
+  const shiftedDate = new Date((unixSeconds + timezoneOffsetSeconds) * 1000);
+
+  const day = new Intl.DateTimeFormat("en-GB", {
+    weekday: "long",
+    timeZone: "UTC",
+  }).format(shiftedDate);
+
+  const time = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "UTC",
+  }).format(shiftedDate);
+
+  return `${day} ${time} local time`;
+}
+
 function App() {
   const [weather, setWeather] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,19 +49,6 @@ function App() {
         response.data.weather[0].icon +
         "@2x.png";
 
-      const timestamp = new Date(response.data.dt * 1000);
-      const day = timestamp.toLocaleDateString("en-GB", {
-        weekday: "long",
-        timeZone: "UTC",
-      });
-      const time = timestamp.toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-        hourCycle: "h23",
-        timeZone: "UTC",
-      });
-
       setWeather({
         city: response.data.name,
         temperature: Math.round(response.data.main.temp),
@@ -51,7 +56,7 @@ function App() {
         humidity: response.data.main.humidity,
         windSpeed: response.data.wind.speed,
         icon: icon,
-        time: day + " " + time,
+        time: formatCityLocalDateTime(response.data.dt, response.data.timezone),
       });
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -62,14 +67,15 @@ function App() {
   };
 
   return (
-    <div className="weather-app">
+    <main className="weather-app" role="main">
+      <h1 className="visually-hidden">City Weather Forecast</h1>
       <SearchForm onSearch={handleSearch} isLoading={isLoading} />
-      <animated.div style={fadeIn}>
+      <animated.section style={fadeIn} aria-live="polite">
         <WeatherInfo weather={weather} />
         <WeatherForecast city={weather?.city} />
         <WeatherFooter />
-      </animated.div>
-    </div>
+      </animated.section>
+    </main>
   );
 }
 

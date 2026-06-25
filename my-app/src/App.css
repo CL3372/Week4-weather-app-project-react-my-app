@@ -201,6 +201,45 @@ footer {
   font-size: 10px;
 }
 
+.weather-forecast {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.weather-forecast-temperatures {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.weather-forecast-temperature-max {
+  color: rgb(226, 76, 43);
+  font-weight: bold;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.6;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (max-width: 768px) {
   .weather-app {
     margin: 20px 12px;
@@ -283,34 +322,6 @@ footer {
   .weather-app-temp-separator {
     font-size: 18px;
   }
-
-  .weather-forecast {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.weather-forecast-date {
-  font-size: 16px;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.weather-forecast-temperatures {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 5px;
-}
-
-.weather-forecast-temperature-max {
-  color: rgb(226, 76, 43);
-  font-weight: bold;
-}
-
-.weather-forecast-temperature-min {
-  opacity: 0.6;
-}
-
 
   footer {
     font-size: 12px;

@@ -8,7 +8,7 @@ export default function WeatherInfo({ weather }) {
   return (
     <div className="weather-app-information">
       <div>
-        <h1 className="weather-app-city">{weather.city}</h1>
+        <h2 className="weather-app-city">{weather.city}</h2>
         <p className="weather-app-info">
           <span>{weather.time}</span> <span>{weather.description}</span>
           <br />

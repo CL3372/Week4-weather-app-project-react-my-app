@@ -13,12 +13,16 @@ function SearchForm({ onSearch, isLoading }) {
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <input
+        id="city-search"
         className="search-form-input"
+        name="city"
         type="text"
         value={city}
         onChange={(event) => setCity(event.target.value)}
         placeholder="Enter a city..."
-        aria-label="City"
+        aria-label="City name"
+        autoComplete="address-level2"
+        required
       />
       <button
         type="submit"
