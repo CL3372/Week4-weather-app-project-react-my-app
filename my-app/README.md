@@ -12,3 +12,9 @@ Builds the app for production.
 
 ### `npm test`
 Runs the test suite.
+
+## Live Demo
+
+The current deployed version of the app is available at:
+
+https://my-app-bice-tau-35.vercel.app/

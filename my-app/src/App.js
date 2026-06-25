@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import SearchForm from "./components/SearchForm";
 import WeatherInfo from "./components/WeatherInfo";
+import WeatherForecast from "./components/WeatherForecast";
 import WeatherFooter from "./components/WeatherFooter";
 
 import axios from "axios";
@@ -65,8 +66,9 @@ function App() {
       <SearchForm onSearch={handleSearch} isLoading={isLoading} />
       <animated.div style={fadeIn}>
         <WeatherInfo weather={weather} />
+        <WeatherForecast city={weather?.city} />
+        <WeatherFooter />
       </animated.div>
-      <WeatherFooter />
     </div>
   );
 }

@@ -4,11 +4,7 @@ export default function WeatherFooter() {
   return (
     <footer className="mt-4 text-center">
       Coded by{" "}
-      <a
-        href="https://github.com/CL3372"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href="https://github.com/CL3372" target="_blank" rel="noreferrer">
         Carla Louro,
       </a>{" "}
       Code hosted on{" "}
